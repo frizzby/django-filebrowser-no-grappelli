@@ -368,6 +368,7 @@ def convert_filename(value):
     """
     
     if CONVERT_FILENAME:
+        value = re.sub('[^\w.]', '_', value)
         return value.replace(" ", "_").lower()
     else:
         return value
