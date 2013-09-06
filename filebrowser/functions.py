@@ -128,17 +128,20 @@ def sort_by_attr(seq, attr):
 def url_join(*args):
     """
     URL join routine.
-    """
-    
+    """ 
     if args[0].startswith("http://"):
         url = "http://"
+    elif args[0].startswith("https://"):
+        url = "https://"
+    elif args[0].startswith("//"):
+        url = "//"
     else:
         url = "/"
     for arg in args:
         arg = arg.replace("\\", "/")
         arg_split = arg.split("/")
         for elem in arg_split:
-            if elem != "" and elem != "http:":
+            if elem != "" and elem != "http:" and elem != "https:" and elem != "//":
                 url = url + elem + "/"
     # remove trailing slash for filenames
     if os.path.splitext(args[-1])[1]:
